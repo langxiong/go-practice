@@ -1,5 +1,16 @@
 package main
 
+import (
+	"fmt"
+)
+
 func main() {
-	println("it's over 9000!")
+	power := 1000
+
+	_, power = "xiongl", getPower()
+	fmt.Printf("xiongl's power over %d", power)
+}
+
+func getPower() int {
+	return 9001
 }
