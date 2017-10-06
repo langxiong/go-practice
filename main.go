@@ -4,52 +4,50 @@ import (
 	"fmt"
 )
 
-type Student struct {
+type Persion struct {
 	Name string
+}
+
+func (p *Persion) Introduce() {
+	fmt.Printf("Hi, I'm %s\n", p.Name)
+}
+
+type Saiyan struct {
+	*Persion
 	Power int
-	Classmate *Student
+}
+
+func (s *Saiyan) Introduce() {
+	fmt.Printf("Hi, this is %s\n", s.Name)
 }
 
 func main() {
-	xiongl := Student {
+	xl := Persion{
 		"xiongl",
-		10000,
-		nil,
 	}
 
-	xiongl1 := Student {
-
+	fy := &Saiyan {
+		Persion: &Persion{
+			"fangyi",
+		},
+		Power: 9001,
 	}
 
-	xiongl2 := Student {
-		Name: "xiongl",
+	xl.Introduce()
+	fy.Introduce()
+	fy.Persion.Introduce()
+
+	var scores [4]int
+	scores[0] = 33
+
+	newscores := [4]int {
+		3333,
+		1111,
+		2222,
+		4444,
 	}
 
-	xiongl.Super()
-	xiongl1.Super()
-	xiongl2.Super()
-
-	fmt.Printf("%s's power is %d\n", xiongl.Name, xiongl.Power)
-	fmt.Printf("%s's power is %d\n", xiongl1.Name, xiongl1.Power)
-	fmt.Printf("%s's power is %d\n", xiongl2.Name, xiongl2.Power)
-
-	xl := NewStudent("xl", 99999)
-	xl.Super()
-	fmt.Printf("%s's power is %d, classmate %s\n", xl.Name, xl.Power, xl.Classmate.Name)
-}
-
-func getPower() int {
-	return 9001
-}
-
-func (s *Student) Super() {
-	s.Power += 10000
-}
-
-func NewStudent(name string, power int) *Student {
-	return &Student {
-		Name: name,
-		Power: power,
-		Classmate: nil,
+	for index, value := range newscores {
+		fmt.Println(index, value)
 	}
 }
