@@ -4,16 +4,16 @@ import (
 	"fmt"
 )
 
-type Persion struct {
+type Person struct {
 	Name string
 }
 
-func (p *Persion) Introduce() {
+func (p *Person) Introduce() {
 	fmt.Printf("Hi, I'm %s\n", p.Name)
 }
 
 type Saiyan struct {
-	*Persion
+	*Person
 	Power int
 }
 
@@ -22,32 +22,45 @@ func (s *Saiyan) Introduce() {
 }
 
 func main() {
-	xl := Persion{
+	scores := make([]int, 5)
+
+	scores = append(scores, 3)
+
+	fmt.Println(scores)
+
+	names := []string{
 		"xiongl",
+		"fangy",
 	}
 
-	fy := &Saiyan {
-		Persion: &Persion{
-			"fangyi",
-		},
-		Power: 9001,
+	fmt.Println(names)
+
+	xl := Saiyan {
+		&Person {"xiongl",},
+		9999,
 	}
 
-	xl.Introduce()
-	fy.Introduce()
-	fy.Persion.Introduce()
-
-	var scores [4]int
-	scores[0] = 33
-
-	newscores := [4]int {
-		3333,
-		1111,
-		2222,
-		4444,
+	fy := Saiyan {
+		&Person {"fangyi",},
+		10000,
 	}
 
-	for index, value := range newscores {
-		fmt.Println(index, value)
+	saiyans := []Saiyan{};
+
+	saiyans = append(saiyans, xl)
+	saiyans = append(saiyans, fy)
+
+	powers := extractPower(&saiyans)
+
+	fmt.Println(powers)
+}
+
+func extractPower(saiyans []*Saiyan) []int{
+	powers := make([]int, len(saiyans))
+
+	for i, s := range(saiyans) {
+		powers[i] = s.Power
 	}
+
+	return powers
 }
