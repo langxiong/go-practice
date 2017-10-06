@@ -45,14 +45,35 @@ func main() {
 		10000,
 	}
 
-	saiyans := []*Saiyan{};
+	{
+		saiyans := []*Saiyan{};
+		
+		saiyans = append(saiyans, &xl)
+		saiyans = append(saiyans, &fy)
 
-	saiyans = append(saiyans, &xl)
-	saiyans = append(saiyans, &fy)
+		powers := extractPower(saiyans)
+		fmt.Println(powers)
+	}
 
-	powers := extractPower(saiyans)
+	{
+		saiyans := []Saiyan{};
+		
+		saiyans = append(saiyans, xl)
+		saiyans = append(saiyans, fy)
 
-	fmt.Println(powers)
+		powers := extractPowerPoint(&saiyans)
+		fmt.Println(powers)
+	}
+}
+
+func extractPowerPoint(saiyans *[]Saiyan) []int {
+	powers := make([]int, len(*saiyans))
+
+	for i, s := range(*saiyans) {
+		powers[i] = s.Power
+	}
+
+	return powers
 }
 
 func extractPower(saiyans []*Saiyan) []int{
