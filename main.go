@@ -45,12 +45,12 @@ func main() {
 		10000,
 	}
 
-	saiyans := []Saiyan{};
+	saiyans := []*Saiyan{};
 
-	saiyans = append(saiyans, xl)
-	saiyans = append(saiyans, fy)
+	saiyans = append(saiyans, &xl)
+	saiyans = append(saiyans, &fy)
 
-	powers := extractPower(&saiyans)
+	powers := extractPower(saiyans)
 
 	fmt.Println(powers)
 }
